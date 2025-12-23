@@ -1,52 +1,119 @@
-import { Text, View, Image, StyleSheet, ScrollView } from "react-native";
-
+import { Image, ScrollView, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import Map from "../components/map";
 export default function Index() {
+  const { width } = useWindowDimensions();
+  const isMobile = width < 1200;
+
+  const UnorderedListItem = ({ children }) => (
+  <View style={styles.listItem}>
+    <Text style={styles.bullet}>{'\u2022'}</Text>
+    <Text style={[styles.text, isMobile && { fontSize: 16 }]}>{children}</Text>
+  </View>
+  );
+
+  const colors = {
+    background: '#89b7d6ff',
+    text: '#333333',
+    greenBG: '#3b9b3bff',
+    redBG: '#a53737ff',
+    blueBG: '#3030b1ff',
+    greenText: '#008000',
+    redText: '#800000',
+    blueText: '#000080',
+  };
   return (
     <ScrollView contentContainerStyle={{
       alignItems: "center",
       paddingVertical: 20,
+      width: '100%',
     }}>
-      <Text style={styles.title}>Franchise Sports Camp</Text>
-      <View style={{width: '90%', backgroundColor: 'green', marginBottom: 20, padding: 30, alignItems: 'center', justifyContent: 'center', gap: 10}}>
-        <Text style={{fontSize: 32, color: 'white',}}>Registration Open Now!</Text>
-        <Text style={{fontSize: 16, color: 'white',}}>Registration Open March 1st to July 20th</Text>
-      </View>
-      <View style={[styles.sideBySide, {paddingLeft: 10}]}>
-        <View style={{ paddingRight: 10, height: '100%', justifyContent: 'space-around' }}>
-          <Text style={{color: 'white', fontSize: 16}}>Welcome to Franchise Sports Camp!</Text>
-          <Text style={{color: 'white', fontSize: 16}}>Our summer camp offers a fun and engaging experience for children.</Text>
-          <Text style={{color: 'white', fontSize: 16}}>4 Week Summer camp for children aged 5 - 13</Text>
-        </View>
-        <Image 
-          source={require('./../assets/images/parachute.jpg')} 
-          style={styles.image}
-          resizeMode="cover"
+      <View style={[styles.content, {backgroundColor: colors.background}]}>
+        <Image
+          source={require('./../assets/images/franchiseLogo.png')}
+          style={isMobile ? {width: 120, height: 120} : {width: 200, height: 200}}
         />
-      </View>
-      <View style={[styles.sideBySide, {backgroundColor: '#3737ffff', paddingRight: 10}]}>
-        <Image 
-          source={require('./../assets/images/parachute.jpg')} 
-          style={styles.image}
-          resizeMode="cover"
-        />
-        <View style={{ paddingLeft: 10, height: '100%', justifyContent: 'space-around' }}>
-          <Text style={{color: 'white', fontSize: 16}}>Welcome to Franchise Sports Camp!</Text>
-          <Text style={{color: 'white', fontSize: 16}}>Our summer camp offers a fun and engaging experience for children.</Text>
-          <Text style={{color: 'white', fontSize: 16}}>4 Week Summer camp for children aged 5 - 13</Text>
+        <Text style={[styles.title, isMobile && { fontSize: 24 }]}>Franchise Sports Camp</Text>
+        <View style={{width: '100%', backgroundColor: colors.greenBG, marginBottom: 20, padding: isMobile ? 15 : 30, alignItems: 'center', justifyContent: 'center', gap: 10}}>
+          <Text style={{fontSize: isMobile ? 20 : 32, color: 'white',}}>Registration Open Now!</Text>
+          <Text style={{fontSize: isMobile ? 12 : 16, color: 'white',}}>Registration Open March 1st to July 20th</Text>
         </View>
+        <View style={[styles.sideBySide, isMobile && { flexDirection: 'column', height: 'auto' }]}>
+          <View style={{ paddingRight: isMobile ? 0 : 10, height: isMobile ? 'auto' : '100%', flex: isMobile ? undefined : 3, justifyContent: 'space-around', backgroundColor: colors.blueBG, padding: isMobile ? 15 : 20, width: isMobile ? '100%' : undefined }}>
+            <Text style={{color: 'white', fontSize: isMobile ? 16 : 24}}>Welcome to Franchise Sports Camp!</Text>
+            <Text style={{color: 'white', fontSize: isMobile ? 16 : 24, marginTop: isMobile ? 10 : 0}}>Our summer camp offers a fun and engaging experience for children.</Text>
+            <Text style={{color: 'white', fontSize: isMobile ? 16 : 24, marginTop: isMobile ? 10 : 0}}>4 Week Summer camp for children aged 5 - 13</Text>
+          </View>
+          <Image 
+            source={require('./../assets/images/parachute.jpg')} 
+            style={[styles.image, isMobile && { width: '100%', height: 250 }]}
+            resizeMode="cover"
+          />
+        </View>
+        <View style={[styles.sideBySide, isMobile && { flexDirection: 'column-reverse', height: 'auto' }]}>
+          <Image 
+            source={require('./../assets/images/tug-of-war.jpg')} 
+            style={[styles.image, isMobile && { width: '100%', height: 250 }]}
+            resizeMode="cover"
+          />
+          <View style={{ paddingLeft: isMobile ? 0 : 10, height: isMobile ? 'auto' : '100%', flex: isMobile ? undefined : 3, justifyContent: 'space-around', backgroundColor: colors.redBG, padding: isMobile ? 15 : 20, width: isMobile ? '100%' : undefined }}>
+            <Text style={{color: 'white', fontSize: isMobile ? 16 : 24}}>Excersise over summer break</Text>
+            <Text style={{color: 'white', fontSize: isMobile ? 16 : 24, marginTop: isMobile ? 10 : 0}}>Learning through games that incorporate math, counting, and spelling (horse?)</Text>
+            <Text style={{color: 'white', fontSize: isMobile ? 16 : 24, marginTop: isMobile ? 10 : 0}}>Safe socialization with other children their age</Text>
+          </View>
+        </View>
+        <View style={[styles.sideBySide, {marginTop: isMobile ? 20 : 50, gap: isMobile ? 0 : 64}, isMobile && { flexDirection: 'column', height: 'auto' }]}>
+          <Image 
+            source={require('./../assets/images/soccer.jpg')} 
+            style={[styles.image, {flex: isMobile ? undefined : 2}, isMobile && { width: '100%', height: 250 }]}
+            resizeMode="cover"
+          />
+          <View style={{ paddingLeft: isMobile ? 0 : 10, height: isMobile ? 'auto' : '100%', flex: isMobile ? undefined : 3, gap: isMobile ? 16 : 32, padding: isMobile ? 15 : 20, alignItems: 'flex-start', justifyContent: 'center', width: isMobile ? '100%' : undefined }}>
+            <Text style={{fontSize: isMobile ? 24 : 32}}>Activities Include:</Text>
+            <View style={[styles.sideBySide, {height: 'auto', gap: isMobile ? 16 : 64, justifyContent: 'flex-start'}, isMobile && { flexDirection: 'column', alignItems: 'flex-start' }]}>
+              <View>
+                <UnorderedListItem>Baseball</UnorderedListItem>
+                <UnorderedListItem>Basketball</UnorderedListItem>
+                <UnorderedListItem>Pickleball</UnorderedListItem>
+                <UnorderedListItem>67 Tag</UnorderedListItem>
+              </View>
+              <View>
+                <UnorderedListItem>Softball</UnorderedListItem>
+                <UnorderedListItem>Line Dancing</UnorderedListItem>
+                <UnorderedListItem>Flag Football</UnorderedListItem>
+                <UnorderedListItem>Foot Races</UnorderedListItem>
+              </View>
+              <View>
+                <UnorderedListItem>Puzzles</UnorderedListItem>
+                <UnorderedListItem>Painting</UnorderedListItem>
+                <UnorderedListItem>Clay Sculpting</UnorderedListItem>
+                <UnorderedListItem>And much more...</UnorderedListItem>
+              </View>
+            </View>
+            
+          </View>
+        </View>
+      <View style={styles.mapContainer}>
+        <Map />
+      </View>
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  content: {
+    alignItems: 'center',
+    width: '90%',
+    padding: 20,
+    borderRadius: 10,
+    gap: 0,
+  },
   sideBySide: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: '90%',
+    width:'100%',
     height: 500,
-    backgroundColor: '#ff3737ff',
   },
   title: {
     fontSize: 32,
@@ -57,6 +124,27 @@ const styles = StyleSheet.create({
   image: {
     width: 700,
     height: '100%',
-    resizeMode: 'cover'
+    resizeMode: 'cover',
+    flex: 1
+  },
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 5,
+  },
+  bullet: {
+    width: 10,
+    marginRight: 10,
+    fontSize: 20,
+    lineHeight: 28,
+  },
+  text: {
+    flex: 1,
+    fontSize: 20,
+  },
+  mapContainer: {
+    width: '100%',
+    height: 800,
+    marginTop: 50,
   },
 });
