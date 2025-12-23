@@ -17,6 +17,7 @@ export default function Index() {
     greenBG: '#3b9b3bff',
     redBG: '#a53737ff',
     blueBG: '#3030b1ff',
+    orangeBG: '#408b27ff',
     greenText: '#008000',
     redText: '#800000',
     blueText: '#000080',
@@ -36,6 +37,7 @@ export default function Index() {
         <View style={{width: '100%', backgroundColor: colors.greenBG, marginBottom: 20, padding: isMobile ? 15 : 30, alignItems: 'center', justifyContent: 'center', gap: 10}}>
           <Text style={{fontSize: isMobile ? 20 : 32, color: 'white',}}>Registration Open Now!</Text>
           <Text style={{fontSize: isMobile ? 12 : 16, color: 'white',}}>Registration Open March 1st to July 20th</Text>
+          <Text style={{fontSize: isMobile ? 12 : 16, color: 'white',}}>Camp Runs rom July 24th to August 21st </Text>
         </View>
         <View style={[styles.sideBySide, isMobile && { flexDirection: 'column', height: 'auto' }]}>
           <View style={{ paddingRight: isMobile ? 0 : 10, height: isMobile ? 'auto' : '100%', flex: isMobile ? undefined : 3, justifyContent: 'space-around', backgroundColor: colors.blueBG, padding: isMobile ? 15 : 20, width: isMobile ? '100%' : undefined }}>
@@ -92,9 +94,21 @@ export default function Index() {
             
           </View>
         </View>
-      <View style={styles.mapContainer}>
-        <Map />
-      </View>
+        <View style={[styles.sideBySide, {backgroundColor: colors.greenBG, marginTop: isMobile ? 20 : 50, gap: isMobile ? 0 : 64}, isMobile && { flexDirection: 'column', height: 'auto' }]}>
+          <View style={{ paddingLeft: isMobile ? 0 : 10, height: isMobile ? 'auto' : '100%', flex: isMobile ? undefined : 1, gap: isMobile ? 16 : 32, padding: isMobile ? 15 : 20, alignItems: 'flex-start', justifyContent: 'center', width: isMobile ? '100%' : undefined }}>
+            <View style={[styles.sideBySide, {height: 'auto', gap: isMobile ? 24 : 82, justifyContent: 'flex-start'}, isMobile && { flexDirection: 'column', alignItems: 'flex-start' }]}>
+              <View style={{ gap: isMobile ? 10 : 20, flex: 1 }}>
+                <Text style={{color: 'white', fontSize: isMobile ? 32 : 42, fontWeight:"bold"}}>Location:</Text>
+                <Text style={{color: 'white', fontSize: isMobile ? 24 : 32, marginTop: isMobile ? 10 : 0}}>Conveniently location in Woodbury, NJ</Text>
+                <Text style={{color: 'white', fontSize: isMobile ? 24 : 32, marginTop: isMobile ? 10 : 0}}>30 minutes from Philadelphia</Text>
+                <Text style={{color: 'white', fontSize: isMobile ? 24 : 32, marginTop: isMobile ? 10 : 0}}>Close to the NJ Turnpike, RT. 295, RT. 55, and RT. 42</Text>
+              </View>
+            </View>
+          </View>
+          <View style={[styles.mapContainer, isMobile ? { width: '100%', height: 400 } : { flex: 1, height: '80%'} ]}>
+            <Map />
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
@@ -103,7 +117,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
-    width: '90%',
+    width: '80%',
     padding: 20,
     borderRadius: 10,
     gap: 0,
@@ -144,7 +158,7 @@ const styles = StyleSheet.create({
   },
   mapContainer: {
     width: '100%',
-    height: 800,
-    marginTop: 50,
+    height: '100%',
+    padding: 10,
   },
 });
