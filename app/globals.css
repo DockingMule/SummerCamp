@@ -230,6 +230,18 @@ body {
       color: inherit;
     }
 
+    .registrationButton {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #5d2c2c;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
   @media (max-width: 768px) {
     .content {
       width: 95%;

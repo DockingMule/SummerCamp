@@ -9,6 +9,7 @@ export default function Home() {
       <h2>Registration Open Now!</h2>
       <p>Registration Open March 1st to July 20th</p>
       <p>Camp Runs rom July 24th to August 21st </p>
+      <a href="/register" className="registrationButton">Click here to Register!</a>
     </div>
     <div className="sideBySide blueBG">
       <div className="textSection">

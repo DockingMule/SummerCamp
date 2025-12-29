@@ -437,14 +437,31 @@
     box-shadow: 0 0 0 3px #3b9b3b1f;
   }
 
-  .registration input.error, .registration select.error, .registration textarea.error {
-    box-shadow: none;
-    border-color: #a53737;
+  form.registration input.error, form.registration select.error, form.registration textarea.error, .registration input.error, .registration select.error, .registration textarea.error {
+    box-shadow: none !important;
+    border-color: #a53737 !important;
   }
 
-  .registration input.error::placeholder, .registration textarea.error::placeholder, .registration select.error::placeholder {
-    color: #a53737;
-    opacity: 1;
+  form.registration input.error::placeholder, form.registration textarea.error::placeholder, .registration input.error::placeholder, .registration textarea.error::placeholder {
+    color: #a53737 !important;
+    opacity: 1 !important;
+  }
+
+  .registration select.error {
+    color: inherit;
+    border-color: #a53737 !important;
+  }
+
+  .registrationButton {
+    color: #fff;
+    background-color: #5e1f1f;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
   }
 
   @media (max-width: 768px) {
