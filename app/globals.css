@@ -45,7 +45,7 @@ body {
   }
 
   .orangeBG {
-    background-color: #408b27ff;
+    background-color: rgb(170, 89, 22);
   }
 
   .textColor {
@@ -96,12 +96,17 @@ body {
     width: 100%;
     min-height: 500px;
     gap: 20px;
+    padding: 20px 0px;
   }
 
   .locationContainer {
     margin: 20px 0px;
     padding: 20px;
-    font-size: 32px
+    font-size: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
   }
 
   .title {
@@ -157,6 +162,74 @@ body {
     gap: 10px;
   }
 
+  .registration {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 12px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+    }
+
+    .registration input,
+    .registration select,
+    .registration textarea {
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #757070;
+    width: 100%;
+    box-sizing: border-box;
+    }
+
+    .registration textarea { min-height: 120px; resize: vertical; }
+
+    .registration input[type="submit"] {
+    background: #3b9b3b;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    }
+
+    .registration input:focus,
+    .registration select:focus,
+    .registration textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59,155,59,0.12);
+    border-color: #3b9b3b;
+    }
+
+    /* Error state styling for required fields (higher specificity) */
+    form.registration input.error,
+    form.registration select.error,
+    form.registration textarea.error,
+    .registration input.error,
+    .registration select.error,
+    .registration textarea.error {
+      border-color: #a53737ff !important;
+      box-shadow: none !important;
+    }
+
+    form.registration input.error::placeholder,
+    form.registration textarea.error::placeholder,
+    .registration input.error::placeholder,
+    .registration textarea.error::placeholder {
+      color: #a53737ff !important;
+      opacity: 1 !important;
+    }
+
+    /* Ensure select shows red border when invalid */
+    .registration select.error {
+      border-color: #a53737ff !important;
+      color: inherit;
+    }
+
   @media (max-width: 768px) {
     .content {
       width: 95%;
@@ -177,6 +250,11 @@ body {
     
     .mapContainer {
       height: 400px;
+      width:100%;
     }
+
+    .textSection {
+      width: 90%;
   }
+}
 }
