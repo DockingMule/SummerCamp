@@ -5,12 +5,15 @@ export default function Home() {
   <div className='content'>
     <div className="headerSection">
       <img src="/group_pic_header.png" alt="Franchise Sports Camp Logo" width={'100%'} height={200} className="headerImage" />
+      <div className="announcement">
       <img src="/franchiseLogo.png" alt="Franchise Sports Camp Logo" width={200} height={200} className="logo" />
-      <div className="announcement greenBG">
+      <div className="announcement-center">
         <h2>Registration Open Now!</h2>
         <p>Registration Open March 1st to July 20th</p>
         <p>Camp Runs rom July 24th to August 21st </p>
         <a href="/register" className="registrationButton">Click here to Register!</a>
+      </div>
+      <div style={{width: '20%', maxWidth: '150px'}}></div>
       </div>
     </div>
     <div className="sideBySide blueBG">

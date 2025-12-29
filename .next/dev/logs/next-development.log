@@ -1,46 +1,25 @@
-[00:00:01.036] Server  LOG     ✓ Ready in 743ms
-[00:00:01.037] Server  WARN    ⚠ Cross origin request detected from 192.168.0.100 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:01.068] Server  LOG     ✓ Ready in 794ms
+[00:00:04.456] Server  WARN    ⚠ Cross origin request detected from 192.168.0.100 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:02.074] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:05.755] Server  LOG     ✓ Compiled in 309ms
-[00:00:10.863] Server  LOG     ✓ Compiled in 42ms
-[00:00:13.518] Server  LOG     ✓ Compiled in 36ms
-[00:00:21.425] Server  LOG     ✓ Compiled in 61ms
-[00:00:24.012] Server  LOG     ✓ Compiled in 56ms
-[00:00:26.061] Server  LOG     ✓ Compiled in 56ms
-[00:00:33.636] Server  LOG     ✓ Compiled in 33ms
-[00:01:30.055] Server  LOG     ✓ Compiled in 62ms
-[00:01:37.228] Server  LOG     ✓ Compiled in 20ms
-[00:01:46.224] Server  LOG     ✓ Compiled in 32ms
-[00:01:50.051] Server  LOG     ✓ Compiled in 21ms
-[00:01:57.023] Server  LOG     ✓ Compiled in 48ms
-[00:02:11.004] Server  LOG     ✓ Compiled in 60ms
-[00:02:14.310] Server  LOG     ✓ Compiled in 49ms
-[00:03:23.726] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:35.909] Server  LOG     ✓ Compiled in 48ms
-[01:35:55.225] Server  LOG     ✓ Compiled in 55ms
-[01:36:34.321] Server  LOG     ✓ Compiled in 70ms
-[01:36:39.841] Server  LOG     ✓ Compiled in 23ms
-[01:36:43.684] Server  LOG     ✓ Compiled in 56ms
-[01:36:46.810] Server  LOG     ✓ Compiled in 35ms
-[01:46:23.952] Server  LOG     ✓ Compiled in 28ms
-[01:47:02.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:47:39.218] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:47:39.336] Browser WARN    Image with src "/dribble.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:04.507] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:08.351] Server  LOG     ✓ Compiled in 73ms
+[00:01:36.381] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:42.979] Server  LOG     ✓ Compiled in 64ms
+[00:02:46.191] Server  LOG     ✓ Compiled in 58ms
+[00:03:42.119] Server  LOG     ✓ Compiled in 14ms
+[00:04:18.584] Server  LOG     ✓ Compiled in 32ms
+[00:04:53.155] Server  LOG     ✓ Compiled in 38ms
+[00:05:05.845] Server  LOG     ✓ Compiled in 59ms
+[00:05:07.990] Server  LOG     ✓ Compiled in 25ms
+[00:05:59.192] Server  LOG     ✓ Compiled in 47ms
+[00:10:25.028] Server  LOG     ✓ Compiled in 53ms
+[00:10:40.777] Server  LOG     ✓ Compiled in 37ms
+[00:11:24.336] Server  LOG     ✓ Compiled in 59ms
+[00:11:33.546] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:33.546] Browser WARN    Image with src "/dribble.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[01:49:23.295] Server  LOG     ✓ Compiled in 51ms
-[01:50:43.899] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:50:45.720] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:01:17.554] Server  LOG     ✓ Compiled in 63ms
-[02:01:34.095] Server  LOG     ✓ Compiled in 62ms
-[02:01:45.756] Server  LOG     ✓ Compiled in 65ms
-[02:04:30.773] Server  LOG     ✓ Compiled in 30ms
-[02:04:40.980] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:04:44.062] Server  LOG     ✓ Compiled in 63ms
-[02:04:46.389] Server  LOG     ✓ Compiled in 53ms
-[02:04:49.808] Server  LOG     ✓ Compiled in 30ms
-[02:04:53.263] Server  LOG     ✓ Compiled in 26ms
-[02:04:58.443] Server  LOG     ✓ Compiled in 64ms
-[02:05:07.811] Server  LOG     ✓ Compiled in 63ms
-[02:05:17.348] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:05:21.633] Server  LOG     ✓ Compiled in 27ms
+[00:12:25.620] Server  LOG     ✓ Compiled in 22ms
+[00:13:01.418] Server  LOG     ✓ Compiled in 31ms
+[00:13:22.235] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:26.713] Server  LOG     ✓ Compiled in 54ms
+[00:13:29.035] Server  LOG     ✓ Compiled in 50ms

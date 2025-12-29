@@ -397,11 +397,9 @@
   }
 
   .logo {
-    z-index: 100;
-    width: 10%;
-    position: absolute;
-    top: 2.5%;
-    left: 2.5%;
+    width: 20%;
+    max-width: 150px;
+    height: auto;
   }
 
   .headerSection {
@@ -488,7 +486,7 @@
   .announcement {
     color: #fff;
     background-color: #3b9b3b77;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -498,6 +496,15 @@
     display: flex;
     position: absolute;
     top: 0;
+  }
+
+  .announcement-center {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    display: flex;
   }
 
   .registration {
@@ -571,7 +578,8 @@
 
   @media (max-width: 768px) {
     .content {
-      width: 95%;
+      width: 100%;
+      font-size: 18px;
     }
 
     .sideBySide {
@@ -579,8 +587,28 @@
       min-height: auto;
     }
 
-    .title {
-      font-size: 24px;
+    .announcement {
+      color: #fff;
+      width: 100%;
+      top: unset;
+      background-color: #3b9b3b;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 15px 30px;
+      display: flex;
+      position: static;
+    }
+
+    .announcement-center {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      display: flex;
     }
 
     .responsiveImage {
@@ -590,6 +618,11 @@
     .mapContainer {
       width: 100%;
       height: 400px;
+    }
+
+    .locationContainer {
+      padding: 10px;
+      font-size: 18px;
     }
 
     .textSection {
