@@ -298,16 +298,27 @@
   }
 
   .content {
-    background: #8d9cd6;
-    border-radius: 10px;
     flex-direction: column;
     align-items: center;
-    gap: 0;
-    width: 80%;
-    max-width: 1400px;
-    margin: 30px auto;
-    padding: 20px;
+    width: 100%;
     display: flex;
+  }
+
+  .logo {
+    z-index: 100;
+    width: 10%;
+    position: absolute;
+    top: 2.5%;
+    left: 2.5%;
+  }
+
+  .headerSection {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    position: relative;
   }
 
   .textSection {
@@ -384,7 +395,7 @@
 
   .announcement {
     color: #fff;
-    background-color: #3b9b3b;
+    background-color: #3b9b3b77;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -393,6 +404,8 @@
     margin-bottom: 20px;
     padding: 15px 30px;
     display: flex;
+    position: absolute;
+    top: 0;
   }
 
   .registration {
@@ -454,7 +467,7 @@
 
   .registrationButton {
     color: #fff;
-    background-color: #5e1f1f;
+    background-color: #5d2c2c;
     border-radius: 6px;
     margin-top: 10px;
     padding: 12px 24px;

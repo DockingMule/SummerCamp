@@ -3,13 +3,15 @@ import Map from "../components/Map";
 export default function Home() {
   return (
   <div className='content'>
-    <img src="/franchiseLogo.png" alt="Franchise Sports Camp Logo" width={200} height={200} />
-    <h1 className="title">Franchise Sports Camp</h1>
-    <div className="announcement greenBG">
-      <h2>Registration Open Now!</h2>
-      <p>Registration Open March 1st to July 20th</p>
-      <p>Camp Runs rom July 24th to August 21st </p>
-      <a href="/register" className="registrationButton">Click here to Register!</a>
+    <div className="headerSection">
+      <img src="/group_pic_header.png" alt="Franchise Sports Camp Logo" width={'100%'} height={200} className="headerImage" />
+      <img src="/franchiseLogo.png" alt="Franchise Sports Camp Logo" width={200} height={200} className="logo" />
+      <div className="announcement greenBG">
+        <h2>Registration Open Now!</h2>
+        <p>Registration Open March 1st to July 20th</p>
+        <p>Camp Runs rom July 24th to August 21st </p>
+        <a href="/register" className="registrationButton">Click here to Register!</a>
+      </div>
     </div>
     <div className="sideBySide blueBG">
       <div className="textSection">
@@ -18,31 +20,45 @@ export default function Home() {
         <p>4 Week Summer camp for children aged 5 - 13</p>
       </div>
       <Image 
-        src="/parachute.jpg" 
+        src="/dribble.png" 
+        alt="Children playing with a parachute"
+        width={450}
+        height={300}
+        className="responsiveImage"
+      />
+    </div>
+    <div className="sideBySide orangeBG">
+      <Image 
+        src="/basketball.png" 
         alt="Children playing with a parachute"
         width={400}
         height={300}
         className="responsiveImage"
       />
+      <div className="textSection">
+        <h2>Welcome to Franchise Sports Camp!</h2>
+        <p>Our summer camp offers a fun and engaging experience for children.</p>
+        <p>4 Week Summer camp for children aged 5 - 13</p>
+      </div>
     </div>
     <div className="sideBySide redBG">
-      <Image 
-        src="/tug-of-war.jpg" 
-        alt="Children playing tug of war"
-        width={400}
-        height={300}
-        className="responsiveImage"
-      />
       <div className="textSection">
         <h2>Exercise over summer break</h2>
         <p>Our camp provides a variety of physical activities to keep children active and healthy during the summer months.</p>
         <p>From team sports to individual challenges, there's something for everyone!</p>
       </div>
+      <Image 
+        src="/soccer_smile.png" 
+        alt="Children playing tug of war"
+        width={400}
+        height={300}
+        className="responsiveImage"
+      />
     </div>
     <div className="locationContainer greenBG">
       <div className="sideBySide">
         <div className="textSection">
-          <p><strong>Weeks:<br /> June 29th - July 2nd, July 6th - July 9th</strong></p>
+          <p><strong>June 29th - July 2nd,<br/> July 6th - July 9th</strong></p>
           <p>James G. Atkinson Memorial Park</p>
           <p>Sewell, NJ</p>
           <p>Park featuring a jogging/biking trail, picnic areas, playgrounds & various athletic fields & courts.</p>
@@ -53,7 +69,7 @@ export default function Home() {
       </div>
       <div className="sideBySide">
         <div className="textSection">
-          <p><strong>Weeks:<br /> July 13th - July 16th, July 20th - July 23rd</strong></p>
+          <p><strong>July 13th - July 16th,<br/>July 20th - July 23rd</strong></p>
           <p>Conveniently located in Woodbury, NJ</p>
           <p>30 minutes from Philadelphia</p>
           <p>Close to the NJ Turnpike, RT. 295, RT. 55, and RT. 42</p>
@@ -69,7 +85,7 @@ export default function Home() {
           <p>Frank has 20+ years of experience teaching Physical education. And the same amount of years coaching various sports and running camps. Over the years he has developed the most effective and fun way to run a camp. His sports camps have more of a summer camp vibe where kids make new friends, enjoy playing in fun activities while still practicing the basic fundamentals and skills of each sport.</p>
           <p>You could be a beginner or an avid player, one thing his camps do is make it possible for both to participate in the games and activities together and not have to fear they won't be good enough.</p>
         </div>
-<img src="/almonesson-lake-park.jpg" alt="Frank Pic" width={400} height={300} className="responsiveImage" />
+<img src="/group_pic.png" alt="Frank Pic" width={400} height={300} className="responsiveImage" />
       </div>
     </div>
   );
