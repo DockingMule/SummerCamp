@@ -212,6 +212,29 @@ function App() {
                         lineNumber: 88,
                         columnNumber: 13
                     }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                        children: "Select Dates"
+                    }, void 0, false, {
+                        fileName: "[project]/app/register/page.tsx",
+                        lineNumber: 93,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("small", {
+                        children: "Whole weeks are prefered but individual days is acceptable"
+                    }, void 0, false, {
+                        fileName: "[project]/app/register/page.tsx",
+                        lineNumber: 94,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                        type: "date",
+                        min: "2025-01-01",
+                        max: "2025-12-31"
+                    }, void 0, false, {
+                        fileName: "[project]/app/register/page.tsx",
+                        lineNumber: 95,
+                        columnNumber: 13
+                    }, this),
                     errors.age || errors.childFirstName || errors.childLastName || errors.parentFirstName || errors.parentLastName || errors.parentEmail || errors.parentPhone ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         style: {
                             color: 'red',
@@ -220,14 +243,14 @@ function App() {
                         children: "* Required field"
                     }, void 0, false, {
                         fileName: "[project]/app/register/page.tsx",
-                        lineNumber: 94,
+                        lineNumber: 98,
                         columnNumber: 15
                     }, this) : null,
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: data
                     }, void 0, false, {
                         fileName: "[project]/app/register/page.tsx",
-                        lineNumber: 96,
+                        lineNumber: 100,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -235,7 +258,7 @@ function App() {
                         value: "Submit Registration"
                     }, void 0, false, {
                         fileName: "[project]/app/register/page.tsx",
-                        lineNumber: 97,
+                        lineNumber: 101,
                         columnNumber: 13
                     }, this)
                 ]

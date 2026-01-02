@@ -1,25 +1,60 @@
-[00:00:01.068] Server  LOG     ✓ Ready in 794ms
-[00:00:04.456] Server  WARN    ⚠ Cross origin request detected from 192.168.0.100 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:01.064] Server  LOG     ✓ Ready in 760ms
+[00:00:05.980] Server  WARN    ⚠ Cross origin request detected from 192.168.0.100 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:04.507] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:08.351] Server  LOG     ✓ Compiled in 73ms
-[00:01:36.381] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:42.979] Server  LOG     ✓ Compiled in 64ms
-[00:02:46.191] Server  LOG     ✓ Compiled in 58ms
-[00:03:42.119] Server  LOG     ✓ Compiled in 14ms
-[00:04:18.584] Server  LOG     ✓ Compiled in 32ms
-[00:04:53.155] Server  LOG     ✓ Compiled in 38ms
-[00:05:05.845] Server  LOG     ✓ Compiled in 59ms
-[00:05:07.990] Server  LOG     ✓ Compiled in 25ms
-[00:05:59.192] Server  LOG     ✓ Compiled in 47ms
-[00:10:25.028] Server  LOG     ✓ Compiled in 53ms
-[00:10:40.777] Server  LOG     ✓ Compiled in 37ms
-[00:11:24.336] Server  LOG     ✓ Compiled in 59ms
-[00:11:33.546] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:11:33.546] Browser WARN    Image with src "/dribble.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:06.047] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:06.251] Browser ERROR   uncaughtError: Error: Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate. React limits the number of nested updates to prevent infinite loops.
+[00:00:34.261] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:00:34.283] Server  LOG     ✓ Compiled in 21ms
+[00:00:34.716] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:27.664] Server  LOG     ✓ Compiled in 23ms
+[00:01:43.613] Server  LOG     ✓ Compiled in 29ms
+[00:08:45.890] Server  LOG     ✓ Compiled in 42ms
+[00:08:48.003] Browser ERROR   ./components/DatePicker.tsx:63:1
+Parsing ecmascript source code failed
+  61 | };
+  62 |
+> 63 | export default SelectsMultipleFormat;
+     | ^^^^^^
+
+'import', and 'export' cannot be used outside of module code
+
+Import traces:
+  Client Component Browser:
+    ./components/DatePicker.tsx [Client Component Browser]
+    ./app/register/page.tsx [Client Component Browser]
+    ./app/register/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/DatePicker.tsx [Client Component SSR]
+    ./app/register/page.tsx [Client Component SSR]
+    ./app/register/page.tsx [Server Component]
+[00:10:14.380] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:19.625] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:19.791] Browser WARN    Image with src "/dribble.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:12:25.620] Server  LOG     ✓ Compiled in 22ms
-[00:13:01.418] Server  LOG     ✓ Compiled in 31ms
-[00:13:22.235] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:13:26.713] Server  LOG     ✓ Compiled in 54ms
-[00:13:29.035] Server  LOG     ✓ Compiled in 50ms
+[00:11:58.776] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:06.591] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:06.722] Browser WARN    Image with src "/dribble.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:13:48.592] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:40.703] Server  LOG     ✓ Compiled in 11ms
+[00:15:20.124] Server  LOG     ✓ Compiled in 46ms
+[00:18:50.850] Server  LOG     ✓ Compiled in 20ms
+[00:19:15.004] Server  LOG     ✓ Compiled in 17ms
+[00:21:15.565] Server  LOG     ✓ Compiled in 11ms
+[00:21:25.189] Server  LOG     ✓ Compiled in 11ms
+[00:23:09.756] Server  LOG     ✓ Compiled in 11ms
+[00:23:37.612] Server  LOG     ✓ Compiled in 20ms
+[00:25:23.965] Server  LOG     ✓ Compiled in 41ms
+[00:25:37.158] Server  LOG     ✓ Compiled in 35ms
+[00:26:42.167] Server  LOG     ✓ Compiled in 14ms
+[00:26:54.943] Server  LOG     ✓ Compiled in 38ms
+[00:27:00.008] Server  LOG     ✓ Compiled in 15ms
+[00:27:05.284] Server  LOG     ✓ Compiled in 19ms
+[00:27:19.071] Server  LOG     ✓ Compiled in 32ms
+[00:27:47.697] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:13.468] Server  LOG     ✓ Compiled in 13ms
+[00:28:28.962] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:29.079] Browser WARN    Image with src "/dribble.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:28:48.159] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

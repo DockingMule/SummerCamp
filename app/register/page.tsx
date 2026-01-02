@@ -1,10 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
+import DatePicker from "../../components/DatePicker";
 import '../globals.css';
 
 export default function App() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const [data, setData] = useState("");
   const [banner, setBanner] = useState("");
   const [showBanner, setShowBanner] = useState(false);
@@ -17,6 +18,11 @@ export default function App() {
       }
     };
   }, []);
+
+  // register a non-visual field to hold selected dates
+  useEffect(() => {
+    register("dates");
+  }, [register]);
 
   function showBannerMessage(msg: string, timeout = 30000) {
     setBanner(msg);
@@ -90,6 +96,11 @@ export default function App() {
               placeholder="Phone Number*"
               className={errors.parentPhone ? 'error' : ''}
             />
+            <h1>Select Dates</h1>
+            <small>Whole weeks are preferred but individual days are acceptable.</small>
+            <small>Note: Weeks 1 and 2 are at our Deptford location while weeks 3 and 4 are at our Woodbury location.</small>
+            <DatePicker onDatesChange={(dates: Date[]) => setValue("dates", dates)} />
+
             {errors.age || errors.childFirstName || errors.childLastName || errors.parentFirstName || errors.parentLastName || errors.parentEmail || errors.parentPhone ? (
               <p style={{color: 'red', fontSize: 18}}>* Required field</p>
             ) : null}

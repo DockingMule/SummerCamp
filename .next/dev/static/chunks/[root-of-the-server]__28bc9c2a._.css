@@ -632,6 +632,10 @@
 }
 
 @layer utilities {
+  .inline {
+    display: inline;
+  }
+
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
