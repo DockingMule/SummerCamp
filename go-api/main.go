@@ -1,41 +1,58 @@
 package main
 
 import (
-	"go-api/handlers"
+	"database/sql"
+	"fmt"
 	"log"
-	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
+
+	"go-api/handlers"
 )
 
+var db *sql.DB
+
 func main() {
-	// Create router
-	router := mux.NewRouter()
 
-	// Health check
-	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("OK"))
-	})
-
-	// F1 Routes
-	router.HandleFunc("/api/drivers", handlers.GetAllDrivers).Methods("GET")
-	router.HandleFunc("/api/driver/{driver_number}", handlers.GetDriver).Methods("GET")
-    router.HandleFunc("/api/sessions", handlers.GetSessions).Methods("GET")
-	router.HandleFunc("/api/session-result", handlers.GetSessionResult).Methods("GET")
-
-
-
-	// Get port from environment or use default
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file loaded:", err)
 	}
 
-	// Start server
-	log.Printf("Server starting on port %s...\n", port)
-	if err := http.ListenAndServe(":"+port, router); err != nil {
-		log.Fatal("Server failed to start:", err)
+	host := os.Getenv("DB_HOST")
+	port := os.Getenv("DB_PORT")
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	dbname := os.Getenv("DB_NAME")
+
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+		host, port, user, password, dbname)
+	var err error
+	db, err = sql.Open("postgres", dsn)
+	if err != nil {
+		log.Fatal(err)
 	}
+	fmt.Println("Database connection established")
+
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Database ping successful")
+
+	// ensure DB is closed when main exits
+	defer db.Close()
+
+	handlers.SetDB(db)
+
+	router := gin.Default()
+	router.GET("/participants", handlers.GetParticipants)
+	router.GET("/participants/:id", handlers.GetParticipantByID)
+	router.POST("/participants", handlers.CreateParticipant)
+	router.PUT("/participants/:id", handlers.UpdateParticipant)
+	router.DELETE("/participants/:id", handlers.DeleteParticipant)
+
+	router.Run("localhost:8080")
 }
