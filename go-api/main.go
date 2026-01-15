@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
@@ -48,6 +49,11 @@ func main() {
 	handlers.SetDB(db)
 
 	router := gin.Default()
+
+	// CORS: allow Next.js dev server to call this API (preflight OPTIONS)
+	// Use default CORS middleware (permissive) to handle preflight OPTIONS
+	router.Use(cors.Default())
+
 	router.GET("/participants", handlers.GetParticipants)
 	router.GET("/participants/:id", handlers.GetParticipantByID)
 	router.POST("/participants", handlers.CreateParticipant)

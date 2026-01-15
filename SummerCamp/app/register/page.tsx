@@ -34,9 +34,56 @@ export default function App() {
     }, timeout) as unknown as number;
   }
 
-  function onSubmit(formData: any) {
-    setData(JSON.stringify(formData));
-    showBannerMessage("Registration received");
+  async function onSubmit(formData: any) {
+    // prepare payload mapping to the Go API Participant model
+    const payload = {
+      first_name: formData.childFirstName || "",
+      last_name: formData.childLastName || "",
+      age: formData.age || null,
+      gender: formData.gender || "",
+      additional_information: formData.aboutYou || "",
+      dates: Array.isArray(formData.dates)
+        ? formData.dates.map((d: any) => {
+            if (d instanceof Date) return d.toISOString();
+            try {
+              return new Date(d).toISOString();
+            } catch (_) {
+              return String(d);
+            }
+          })
+        : [],
+      guardian_first_name: formData.parentFirstName || "",
+      guardian_last_name: formData.parentLastName || "",
+      guardian_email: formData.parentEmail || "",
+      guardian_phone: formData.parentPhone || "",
+      paid_in_full: false,
+      amount_paid: 0.0,
+      accepted: false,
+    };
+
+    try {
+      const res = await fetch("http://localhost:8080/participants", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        showBannerMessage(`Submit failed: ${res.status} ${text}`, 10000);
+        setData(JSON.stringify({ status: res.status, body: text }));
+        return;
+      }
+
+      const created = await res.json();
+      setData(JSON.stringify(created));
+      showBannerMessage("Registration received", 10000);
+    } catch (err: any) {
+      showBannerMessage(`Network error: ${err?.message || err}`, 10000);
+      setData(JSON.stringify({ error: String(err) }));
+    }
   }
 
   return (

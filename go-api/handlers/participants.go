@@ -3,6 +3,7 @@ package handlers
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -149,6 +150,7 @@ func GetParticipantByID(c *gin.Context) {
 
 // CreateParticipant inserts a new participant
 func CreateParticipant(c *gin.Context) {
+	log.Println("CreateParticipant called")
 	var p models.Participant
 	if err := c.BindJSON(&p); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -162,6 +164,7 @@ func CreateParticipant(c *gin.Context) {
         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id
     `, p.FirstName, p.LastName, p.Age, p.Gender, p.AdditionalInfo, pq.Array(p.Dates), p.GuardianFirstName, p.GuardianLastName, p.GuardianEmail, p.GuardianPhone, p.PaidInFull, p.AmountPaid, p.Accepted).Scan(&id)
 	if err != nil {
+		log.Printf("CreateParticipant insert error: %v; payload: %+v", err, p)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
