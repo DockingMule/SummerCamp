@@ -64,11 +64,22 @@ body {
     color: #000080;
   }
 
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
   .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+
+  .admin {
+    padding: 40px 20px;
+    font-size: 20px;
+    gap: 20px;
   }
 
   .logo {
@@ -260,6 +271,20 @@ body {
       font-size: 18px;
       font-weight: bold;
       margin-top: 10px;
+    }
+
+    .participants-table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border:#aeaeae 2px solid;
+    }
+
+    .participants-table th,
+    .participants-table td {
+      border: 1px solid #aeaeae;
+      padding: 8px;
+      text-align: left;
     }
 
   @media (max-width: 768px) {

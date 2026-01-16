@@ -1,11 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
-import { format } from 'date-fns';
-import { DataGrid, GridColDef, GridFilterOperator } from '@mui/x-data-grid';
+import { format, set } from 'date-fns';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import Link from 'next/link';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import '../globals.css';
+import Link from "@mui/material/Link";
 
 export default function App() {
 
@@ -18,19 +23,6 @@ export default function App() {
             headerName: 'Gender',
             type: 'string',
             flex: 1,
-        },
-        {
-            field: 'dates',
-            headerName: 'Dates',
-            description: 'This column has a value getter and is not sortable.',
-            sortable: false,
-            flex: 3,
-            type: 'date',
-            valueGetter: (value, row) => row.dates.map((date: string) => new Date(date)),
-            valueFormatter: (value, row) => {
-                const dates: Date[] = row.dates;
-                return dates.map(d => format(d, 'MM/dd/yyyy')).join(', ');
-            },
         },
         {
             field: 'details',
@@ -52,6 +44,15 @@ export default function App() {
     const paginationModel = {  };
 
     const [participants, setParticipants] = useState<any[]>([]);
+    const [selectedWeeksParticipants, setSelectedWeeksParticipants] = useState<any[]>([]);
+    type WeekKey = 'week1' | 'week2' | 'week3' | 'week4';
+    const [selectedWeek, setSelectedWeek] = useState<WeekKey>('week1');
+    const weeks: Record<WeekKey, string[]> = {
+        week1: ['06/29/2026', '06/30/2026', '07/01/2026', '07/02/2026'],
+        week2: ['07/06/2026', '07/07/2026', '07/08/2026', '07/09/2026'],
+        week3: ['07/13/2026', '07/14/2026', '07/15/2026', '07/16/2026'],
+        week4: ['07/20/2026', '07/21/2026', '07/22/2026', '07/23/2026'],
+    };
 
     useEffect(() => {
         let mounted = true;
@@ -79,13 +80,45 @@ export default function App() {
             controller.abort();
         };
     }, []);
+    
+    useEffect(() => {
+        const selected = participants.filter(participant => {
+            const participantDates = (participant.dates || []).map((dateStr: string) => {
+                const date = new Date(dateStr);
+                return format(date, 'MM/dd/yyyy');
+            });
+            console.log('Participant Dates:', participantDates);
+            return weeks[selectedWeek].some(weekDate => participantDates.includes(weekDate));
+        });
+        setSelectedWeeksParticipants(selected);
+    }, [participants, selectedWeek]);
+
+    const handleChange = (event: SelectChangeEvent) => {
+    setSelectedWeek(event.target.value as WeekKey);
+    };
 
     return (
         <div className="content admin">
-            <h1>Participants</h1>
+            <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Week</InputLabel>
+                    <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={selectedWeek}
+                    label="Week"
+                    onChange={handleChange}
+                    >
+                    <MenuItem value="week1">Week 1</MenuItem>
+                    <MenuItem value="week2">Week 2</MenuItem>
+                    <MenuItem value="week3">Week 3</MenuItem>
+                    <MenuItem value="week4">Week 4</MenuItem>
+                    </Select>
+                </FormControl>
+            </Box>
             <Paper sx={{ height: '100%', width: '80%' }}>
                 <DataGrid
-                    rows={participants}
+                    rows={selectedWeeksParticipants}
                     columns={columns}
                     initialState={{ pagination: { paginationModel } }}
                     pageSizeOptions={[5, 10]}

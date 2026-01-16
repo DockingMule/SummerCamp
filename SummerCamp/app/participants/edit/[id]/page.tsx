@@ -1,11 +1,14 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import DatePicker from "../../components/DatePicker";
-import '../globals.css';
+import DatePicker from "../../../../components/DatePicker";
+import '../../../globals.css';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function App() {
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
+  const params = useParams();
+  const router = useRouter();
   const [data, setData] = useState("");
   const [banner, setBanner] = useState("");
   const [showBanner, setShowBanner] = useState(false);
@@ -23,6 +26,52 @@ export default function App() {
   useEffect(() => {
     register("dates");
   }, [register]);
+
+  // load existing participant when editing
+  useEffect(() => {
+    const id = params?.id;
+    if (!id) return;
+
+    let mounted = true;
+    const controller = new AbortController();
+
+    (async () => {
+      try {
+        const res = await fetch(`http://localhost:8080/participants/${id}`, { signal: controller.signal });
+        if (!res.ok) {
+          showBannerMessage(`Failed to load participant: ${res.status}`);
+          return;
+        }
+        const json = await res.json();
+        if (!mounted) return;
+        // populate form fields
+        setValue('childFirstName', json.first_name || '');
+        setValue('childLastName', json.last_name || '');
+        setValue('age', json.age ?? null);
+        setValue('gender', json.gender || '');
+        setValue('aboutYou', json.additional_information || '');
+        setValue('parentFirstName', json.guardian_first_name || '');
+        setValue('parentLastName', json.guardian_last_name || '');
+        setValue('parentEmail', json.guardian_email || '');
+        setValue('parentPhone', json.guardian_phone || '');
+        // convert dates strings to Date objects for DatePicker
+        if (Array.isArray(json.dates)) {
+          const dates = json.dates.map((s: string) => new Date(s));
+          setValue('dates', dates);
+        } else {
+          setValue('dates', []);
+        }
+      } catch (err: any) {
+        if (err.name === 'AbortError') return;
+        showBannerMessage(`Error loading participant: ${err?.message || err}`);
+      }
+    })();
+
+    return () => {
+      mounted = false;
+      controller.abort();
+    };
+  }, [params, setValue]);
 
   function showBannerMessage(msg: string, timeout = 30000) {
     setBanner(msg);
@@ -61,25 +110,31 @@ export default function App() {
       accepted: false,
     };
 
+    const id = params?.id;
+    if (!id) {
+      showBannerMessage('Missing participant id — cannot update', 10000);
+      return;
+    }
+
     try {
-      const res = await fetch("http://localhost:8080/participants", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const url = `http://localhost:8080/participants/${id}`;
+      const res = await fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
         const text = await res.text();
-        showBannerMessage(`Submit failed: ${res.status} ${text}`, 10000);
+        showBannerMessage(`Update failed: ${res.status} ${text}`, 10000);
         setData(JSON.stringify({ status: res.status, body: text }));
         return;
       }
 
-      const created = await res.json();
-      setData(JSON.stringify(created));
-      showBannerMessage("Registration received", 10000);
+      const updated = await res.json();
+      setData(JSON.stringify(updated));
+      showBannerMessage('Participant updated', 10000);
+      router.push('/participants');
     } catch (err: any) {
       showBannerMessage(`Network error: ${err?.message || err}`, 10000);
       setData(JSON.stringify({ error: String(err) }));
@@ -87,7 +142,7 @@ export default function App() {
   }
 
   return (
-    <div className="content admin">
+    <div className="content">
         {showBanner && <div className="announcement">{banner}</div>}
         <form className="registration" onSubmit={handleSubmit(onSubmit)}>
             <h1>Participant's Information</h1>
@@ -103,9 +158,9 @@ export default function App() {
             />
             <select {...register("gender")}>
                 <option value="">Gender...</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
+                <option value="A">Male</option>
+                <option value="B">Female</option>
+                <option value="C">Other</option>
             </select>
             <input
                 type="number"
@@ -146,13 +201,22 @@ export default function App() {
             <h1>Select Dates</h1>
             <small>Whole weeks are preferred but individual days are acceptable.</small>
             <small>Note: Weeks 1 and 2 are at our Deptford location while weeks 3 and 4 are at our Woodbury location.</small>
-            <DatePicker onDatesChange={(dates: Date[]) => setValue("dates", dates)} />
+            <DatePicker selectedDates={watch('dates') ?? []} onDatesChange={(dates: Date[]) => setValue("dates", dates)} />
 
             {errors.age || errors.childFirstName || errors.childLastName || errors.parentFirstName || errors.parentLastName || errors.parentEmail || errors.parentPhone ? (
               <p style={{color: 'red', fontSize: 18}}>* Required field</p>
             ) : null}
             <p>{data}</p>
-            <input type="submit" value="Submit Registration" />
+            <div style={{display: 'flex', gap: 8, alignItems: 'center'}}>
+              <input type="submit" value="Update Participant" />
+              <button
+                type="button"
+                onClick={() => router.push('/participants')}
+                style={{padding: '8px 12px', background: '#eee', border: '1px solid #ccc', cursor: 'pointer'}}
+              >
+                Cancel
+              </button>
+            </div>
         </form>
     </div>
   );
