@@ -87,73 +87,75 @@ export default function App() {
   }
 
   return (
-    <div className="content admin">
-        {showBanner && <div className="announcement">{banner}</div>}
-        <form className="registration" onSubmit={handleSubmit(onSubmit)}>
-            <h1>Participant's Information</h1>
-          <input
-            {...register("childFirstName", { required: "First name is required" })}
-            placeholder="First name*"
-            className={errors.childFirstName ? 'error' : ''}
-          />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div className="content admin">
+          {showBanner && <div className="announcement">{banner}</div>}
+          <form className="registration" onSubmit={handleSubmit(onSubmit)}>
+              <h1>Participant's Information</h1>
             <input
-              {...register("childLastName", { required: "Last name is required" })}
-              placeholder="Last name*"
-              className={errors.childLastName ? 'error' : ''}
-            />
-            <select {...register("gender")}>
-                <option value="">Gender...</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-            <input
-                type="number"
-                placeholder="Age*"
-                {...register("age", {
-                valueAsNumber: true,
-                required: true,
-                min: { value: 4, message: "Participant must be at least 4 years old" },
-                max: { value: 17, message: "Participant must be less than 17 years old" },
-                })}
-            className={errors.age ? 'error' : ''}
-          />
-            <textarea {...register("aboutYou")} placeholder="Anything else we should know (allergies, special needs, etc.)" className={errors.aboutYou ? 'error' : ''} />
-            <h1>Parent/Guardian's Information</h1>
-            <input
-              {...register("parentFirstName", { required: "Parent first name is required" })}
+              {...register("childFirstName", { required: "First name is required" })}
               placeholder="First name*"
-              className={errors.parentFirstName ? 'error' : ''}
+              className={errors.childFirstName ? 'error' : ''}
             />
-
-            <input
-              {...register("parentLastName", { required: "Parent last name is required" })}
-              placeholder="Last name*"
-              className={errors.parentLastName ? 'error' : ''}
+              <input
+                {...register("childLastName", { required: "Last name is required" })}
+                placeholder="Last name*"
+                className={errors.childLastName ? 'error' : ''}
+              />
+              <select {...register("gender")}>
+                  <option value="">Gender...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+              </select>
+              <input
+                  type="number"
+                  placeholder="Age*"
+                  {...register("age", {
+                  valueAsNumber: true,
+                  required: true,
+                  min: { value: 4, message: "Participant must be at least 4 years old" },
+                  max: { value: 17, message: "Participant must be less than 17 years old" },
+                  })}
+              className={errors.age ? 'error' : ''}
             />
+              <textarea {...register("aboutYou")} placeholder="Anything else we should know (allergies, special needs, etc.)" className={errors.aboutYou ? 'error' : ''} />
+              <h1>Parent/Guardian's Information</h1>
+              <input
+                {...register("parentFirstName", { required: "Parent first name is required" })}
+                placeholder="First name*"
+                className={errors.parentFirstName ? 'error' : ''}
+              />
 
-            <input
-              {...register("parentEmail", { required: "Parent email is required" })}
-              placeholder="Email*"
-              className={errors.parentEmail ? 'error' : ''}
-            />
+              <input
+                {...register("parentLastName", { required: "Parent last name is required" })}
+                placeholder="Last name*"
+                className={errors.parentLastName ? 'error' : ''}
+              />
 
-            <input
-              {...register("parentPhone", { required: "Parent phone is required" })}
-              placeholder="Phone Number*"
-              className={errors.parentPhone ? 'error' : ''}
-            />
-            <h1>Select Dates</h1>
-            <small>Whole weeks are preferred but individual days are acceptable.</small>
-            <small>Note: Weeks 1 and 2 are at our Deptford location while weeks 3 and 4 are at our Woodbury location.</small>
-            <DatePicker onDatesChange={(dates: Date[]) => setValue("dates", dates)} />
+              <input
+                {...register("parentEmail", { required: "Parent email is required" })}
+                placeholder="Email*"
+                className={errors.parentEmail ? 'error' : ''}
+              />
 
-            {errors.age || errors.childFirstName || errors.childLastName || errors.parentFirstName || errors.parentLastName || errors.parentEmail || errors.parentPhone ? (
-              <p style={{color: 'red', fontSize: 18}}>* Required field</p>
-            ) : null}
-            <p>{data}</p>
-            <input type="submit" value="Submit Registration" />
-        </form>
+              <input
+                {...register("parentPhone", { required: "Parent phone is required" })}
+                placeholder="Phone Number*"
+                className={errors.parentPhone ? 'error' : ''}
+              />
+              <h1>Select Dates</h1>
+              <small>Whole weeks are preferred but individual days are acceptable.</small>
+              <small>Note: Weeks 1 and 2 are at our Deptford location while weeks 3 and 4 are at our Woodbury location.</small>
+              <DatePicker onDatesChange={(dates: Date[]) => setValue("dates", dates)} />
+
+              {errors.age || errors.childFirstName || errors.childLastName || errors.parentFirstName || errors.parentLastName || errors.parentEmail || errors.parentPhone ? (
+                <p style={{color: 'red', fontSize: 18}}>* Required field</p>
+              ) : null}
+              <p>{data}</p>
+              <input type="submit" value="Submit Registration" />
+          </form>
+      </div>
     </div>
   );
 }
