@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import DatePicker from "../../../../components/DatePicker";
-import '../../../globals.css';
+import DatePicker from "../../../../../components/DatePicker";
+import '../../../../globals.css';
 import { useParams, useRouter } from 'next/navigation';
 
 export default function App() {
@@ -54,6 +54,9 @@ export default function App() {
         setValue('parentLastName', json.guardian_last_name || '');
         setValue('parentEmail', json.guardian_email || '');
         setValue('parentPhone', json.guardian_phone || '');
+        // store as string to match the <select> option values
+        setValue('paidInFull', String(json.paid_in_full || false));
+        setValue('amountPaid', json.amount_paid ?? 0.0);
         // convert dates strings to Date objects for DatePicker
         if (Array.isArray(json.dates)) {
           const dates = json.dates.map((s: string) => new Date(s));
@@ -84,6 +87,8 @@ export default function App() {
   }
 
   async function onSubmit(formData: any) {
+    // normalize paidInFull from select (string) or boolean into a boolean
+    const paidInFull = formData.paidInFull === 'true' || formData.paidInFull === true;
     // prepare payload mapping to the Go API Participant model
     const payload = {
       first_name: formData.childFirstName || "",
@@ -105,8 +110,8 @@ export default function App() {
       guardian_last_name: formData.parentLastName || "",
       guardian_email: formData.parentEmail || "",
       guardian_phone: formData.parentPhone || "",
-      paid_in_full: false,
-      amount_paid: 0.0,
+      paid_in_full: paidInFull,
+      amount_paid: Number(formData.amountPaid) || 0.0,
       accepted: false,
     };
 
@@ -134,7 +139,7 @@ export default function App() {
       const updated = await res.json();
       setData(JSON.stringify(updated));
       showBannerMessage('Participant updated', 10000);
-      router.push('/participants');
+      router.push('/admin/participants');
     } catch (err: any) {
       showBannerMessage(`Network error: ${err?.message || err}`, 10000);
       setData(JSON.stringify({ error: String(err) }));
@@ -202,16 +207,35 @@ export default function App() {
             <small>Whole weeks are preferred but individual days are acceptable.</small>
             <small>Note: Weeks 1 and 2 are at our Deptford location while weeks 3 and 4 are at our Woodbury location.</small>
             <DatePicker selectedDates={watch('dates') ?? []} onDatesChange={(dates: Date[]) => setValue("dates", dates)} />
-
+            <h1>Payment Information</h1>
+            <p>Amount Paid (Admin Only)
+            <input
+              type="number"
+              step="0.01"
+              {...register("amountPaid", {
+                valueAsNumber: true,
+                required: false,
+                min: { value: 0.0, message: "Amount paid cannot be negative" },
+              })}
+              className={errors.amountPaid ? 'error' : ''}
+            />
+            </p>
+            <p>Paid in Full (Admin Only)
+            <label>
+              <select {...register("paidInFull")}>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </label>
+            </p>
             {errors.age || errors.childFirstName || errors.childLastName || errors.parentFirstName || errors.parentLastName || errors.parentEmail || errors.parentPhone ? (
               <p style={{color: 'red', fontSize: 18}}>* Required field</p>
             ) : null}
-            <p>{data}</p>
             <div style={{display: 'flex', gap: 8, alignItems: 'center'}}>
               <input type="submit" value="Update Participant" />
               <button
                 type="button"
-                onClick={() => router.push('/participants')}
+                onClick={() => router.push('/admin/participants')}
                 style={{padding: '8px 12px', background: '#eee', border: '1px solid #ccc', cursor: 'pointer'}}
               >
                 Cancel

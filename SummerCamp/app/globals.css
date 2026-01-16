@@ -3,6 +3,7 @@
 :root {
   --background: #afe6e3;
   --foreground: #171717;
+  --admin-blue: rgb(113, 113, 221);
 }
 
 @theme inline {
@@ -64,8 +65,17 @@ body {
     color: #000080;
   }
 
+  .admin-blueBG {
+    background-color: var(--admin-blue);
+  }
+
   h1 {
     font-size: 36px;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 24px;
     font-weight: bold;
   }
 
@@ -77,6 +87,7 @@ body {
   }
 
   .admin {
+    width: 80%;
     padding: 40px 20px;
     font-size: 20px;
     gap: 20px;
