@@ -10,6 +10,11 @@ type Props = {
 const SelectsMultipleFormat: React.FC<Props> = ({ selectedDates: initialDates, onDatesChange }) => {
   const [selectedDates, setSelectedDates] = useState<Date[]>(initialDates ?? []);
 
+  // keep internal state in sync when parent passes new selectedDates
+  React.useEffect(() => {
+    setSelectedDates(initialDates ?? []);
+  }, [initialDates]);
+
   const onChange = useCallback(
     (dates: any) => {
       // react-datepicker may pass a single Date or an array when using selectsMultiple
