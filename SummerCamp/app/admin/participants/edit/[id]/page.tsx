@@ -15,12 +15,12 @@ export default function App() {
   const [showBanner, setShowBanner] = useState(false);
   const bannerTimer = useRef<number | null>(null);
 
-      const isAuthenticated = useIsAuthenticated();
-    const { push } = useRouter();
+  const isAuthenticated = useIsAuthenticated();
+  const { push } = useRouter();
 
-    useEffect(() => {
-        if (!isAuthenticated) push('/login');
-    }, [isAuthenticated, push]);
+  useEffect(() => {
+      if (!isAuthenticated) push('/login');
+  }, [isAuthenticated, push]);
 
   useEffect(() => {
     return () => {
