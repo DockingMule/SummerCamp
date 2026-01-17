@@ -12,8 +12,17 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ButtonAppBar from '../../../components/ButtonAppBar';
 import '../../globals.css';
 import Link from "@mui/material/Link";
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+import { useRouter } from 'next/navigation';
 
 export default function App() {
+
+    const isAuthenticated = useIsAuthenticated();
+    const { push } = useRouter();
+
+    useEffect(() => {
+        if (!isAuthenticated) push('/login');
+    }, [isAuthenticated, push]);
 
     const columns: GridColDef[] = [
         { field: 'first_name', headerName: 'First Name', flex: 1 },

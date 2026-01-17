@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import DatePicker from "../../../../../components/DatePicker";
 import '../../../../globals.css';
 import { useParams, useRouter } from 'next/navigation';
+import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 
 export default function App() {
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm();
@@ -13,6 +14,13 @@ export default function App() {
   const [banner, setBanner] = useState("");
   const [showBanner, setShowBanner] = useState(false);
   const bannerTimer = useRef<number | null>(null);
+
+      const isAuthenticated = useIsAuthenticated();
+    const { push } = useRouter();
+
+    useEffect(() => {
+        if (!isAuthenticated) push('/login');
+    }, [isAuthenticated, push]);
 
   useEffect(() => {
     return () => {
