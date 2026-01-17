@@ -90,6 +90,11 @@ export default function Home() {
         </div>
 <img src="/group_pic.png" alt="Frank Pic" width={400} height={300} className="responsiveImage" />
       </div>
+      <div className="footer">
+        <p>Last updated January 2026</p>
+        <p>© 2026 Franchise Sports Camp. All rights reserved.</p>
+        <a href="/login" style={{ color: 'inherit', backgroundColor: 'rgb(195, 195, 241)', textDecoration: 'none', padding: '8px 16px', borderRadius: '4px' }}>Admin Login</a>
+      </div>
     </div>
   );
 }

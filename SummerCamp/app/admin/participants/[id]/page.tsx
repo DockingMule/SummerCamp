@@ -4,15 +4,21 @@ import Button from '@mui/material/Button';
 import ButtonAppBar from '../../../../components/ButtonAppBar';
 import Link from 'next/link';
 import '../../../globals.css';
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import DatePicker from "../../../../components/DatePicker";
+import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 
 
 export default function App() {
-
     const { id } = useParams();
-
     const [participant, setParticipant] = useState<any>(null);
+
+    const isAuthenticated = useIsAuthenticated();
+    const { push } =  useRouter();
+
+    useEffect(() => {
+        if (!isAuthenticated) push('/login');
+    }, [isAuthenticated, push]);
 
     function deleteParticipant() {
         async function deleteData() {
