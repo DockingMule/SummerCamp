@@ -6,13 +6,13 @@ import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import ButtonAppBar from '../../components/ButtonAppBar';
 import {useRouter} from 'next/navigation';
 import { UserData } from '@/app/types';
+import { id } from 'date-fns/locale/id';
 
 const Page = () => {
   const isAuthenticated = useIsAuthenticated();
   const signIn = useSignIn<UserData>();
   const {push} = useRouter();
 
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ const Page = () => {
    *
    * This function demonstrates a fake authentication, using useSignIn function
    */
-  const loginHandler = (e?: React.FormEvent) => {
+  const loginHandler =  async (e?: React.FormEvent) => {
     e?.preventDefault();
     setError(null);
     if (!email) {
@@ -31,15 +31,26 @@ const Page = () => {
       return;
     }
     setLoading(true);
+    const controller = new AbortController();
+
 
     try {
+      const res = await fetch(`http://localhost:8080/user?email=${email}&password=${encodeURIComponent(password)}`, { signal: controller.signal });
+      if (!res.ok) {
+        return;
+      }
+      const userData = await res.json();
+      console.log('User Data:', await res);
+      if (!userData.match) {
+        throw new Error('Invalid credentials');
+      }
       const exp = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 365; // 1 year
       const payload = { exp };
       const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' + btoa(JSON.stringify(payload)) + '.signature';
 
       signIn({
         auth: { token: fakeToken },
-        userState: { name: name || email.split('@')[0], uid: 'local-uid', email },
+        userState: { name: userData.name || userData.email.split('@')[0], uid: 'local-uid', email: userData.email },
       });
 
       push('/admin/participants');
@@ -72,15 +83,6 @@ const Page = () => {
         }}
       >
         <h2>Admin Sign In</h2>
-        <label style={{ display: 'flex', flexDirection: 'column' }}>
-          Name
-          <input
-            style={{ width: '100%', padding: 8, marginTop: 6, borderRadius: 4, border: '1px solid #ccc' }}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Full name"
-          />
-        </label>
         <label style={{ display: 'flex', flexDirection: 'column' }}>
           Email
           <input
